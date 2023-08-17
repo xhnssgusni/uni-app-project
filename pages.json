@@ -25,6 +25,13 @@
       "path": "goods_detail/goods_detail"
     }, {
       "path": "goods_list/goods_list"
+    }, {
+      "path": "search/search",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false
+      }
+
     }]
   }],
   "globalStyle": {
