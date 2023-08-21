@@ -57,7 +57,7 @@
       }
     },
     methods: {
-      ...mapMutations('m_cart', ['updateGoodsState', 'updateGoodsCount', 'removeGoodsById', 'changeFlag']),
+      ...mapMutations('m_cart', ['updateGoodsState', 'updateGoodsCount', 'removeGoodsById']),
       // 商品的勾选状态发生了变化
       radioChangeHandler(e) {
         this.updateGoodsState(e)
@@ -68,8 +68,7 @@
       },
       // 点击了滑动操作按钮
       swipeActionClickHandler(goods) {
-        this.removeGoodsById(goods.goods_id);
-        this.changeFlag()
+        this.removeGoodsById(goods.goods_id)
       }
     }
   }

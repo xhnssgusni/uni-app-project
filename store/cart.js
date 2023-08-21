@@ -8,7 +8,6 @@ export default {
     // 每个商品的信息对象，都包含如下 6 个属性：
     // { goods_id, goods_name, goods_price, goods_count, goods_small_logo, goods_state }
     cart: JSON.parse(uni.getStorageSync('cart') || '[]'),
-    flag: true,
   }),
 
   // 模块的 mutations 方法
@@ -72,10 +71,6 @@ export default {
       state.cart.forEach(x => x.goods_state = newState)
       // 持久化存储到本地
       this.commit('m_cart/saveToStorage')
-    },
-    // 删除商品时提醒cart徽标更新
-    changeFlag(state) {
-      state.flag = !state.flag;
     }
   },
 
@@ -87,9 +82,6 @@ export default {
       // 循环统计商品的数量，累加到变量 c 中
       state.cart.forEach(goods => c += goods.goods_count)
       return c
-    },
-    flag(state) {
-      return state.flag;
     },
     // 勾选的商品的总数量
     checkedCount(state) {

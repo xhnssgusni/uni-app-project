@@ -5,7 +5,7 @@ import {
 // 导出一个 mixin 对象
 export default {
   computed: {
-    ...mapGetters('m_cart', ['total', 'flag']),
+    ...mapGetters('m_cart', ['total'])
   },
   onShow() {
     // 在页面刚展示的时候，设置数字徽标
@@ -13,13 +13,14 @@ export default {
   },
   methods: {
     setBadge() {
+      if (!this.total) return uni.removeTabBarBadge({
+        index: 1
+      })
       // 调用 uni.setTabBarBadge() 方法，为购物车设置右上角的徽标
-      setTimeout(() => {
-        uni.setTabBarBadge({
-          index: 1,
-          text: this.total ? this.total + "" : undefined, // 注意：text 的值必须是字符串，不能是数字
-        })
-      }, 200)
+      uni.setTabBarBadge({
+        index: 1,
+        text: this.total + "", // 注意：text 的值必须是字符串，不能是数字
+      })
     },
   },
   watch: {
@@ -27,10 +28,6 @@ export default {
     total() {
       // 调用 methods 中的 setBadge 方法，重新为 tabBar 的数字徽章赋值
       this.setBadge()
-    },
-    flag() {
-      console.log(this.total);
-      this.setBadge()
     }
-  },
+  }
 }
